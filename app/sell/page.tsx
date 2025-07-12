@@ -1,24 +1,46 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Badge } from "@/components/ui/badge"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Upload, X, Leaf, Camera, Sparkles, ArrowLeft, Tag, Package, Star } from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Upload,
+  X,
+  Leaf,
+  Camera,
+  Sparkles,
+  ArrowLeft,
+  Tag,
+  Package,
+  Star,
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function SellPage() {
-  const [images, setImages] = useState<string[]>([])
-  const [tags, setTags] = useState<string[]>([])
-  const [newTag, setNewTag] = useState("")
+  const [images, setImages] = useState<string[]>([]);
+  const [tags, setTags] = useState<string[]>([]);
+  const [newTag, setNewTag] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -33,7 +55,7 @@ export default function SellPage() {
     minPoints: "",
     preferredItems: "",
     isNegotiable: false,
-  })
+  });
 
   const categories = [
     "Tops",
@@ -46,74 +68,113 @@ export default function SellPage() {
     "Jewelry",
     "Activewear",
     "Formal",
-  ]
+  ];
 
-  const sizes = ["XS", "S", "M", "L", "XL", "XXL", "XXXL", "One Size", "6", "7", "8", "9", "10", "11", "12"]
+  const sizes = [
+    "XS",
+    "S",
+    "M",
+    "L",
+    "XL",
+    "XXL",
+    "XXXL",
+    "One Size",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+  ];
 
   const conditions = [
-    { value: "new", label: "New with tags", description: "Brand new, never worn" },
-    { value: "like-new", label: "Like new", description: "Worn once or twice, excellent condition" },
-    { value: "excellent", label: "Excellent", description: "Gently used, no visible wear" },
-    { value: "good", label: "Good", description: "Some signs of wear, still in great shape" },
-    { value: "fair", label: "Fair", description: "Noticeable wear but still functional" },
-  ]
+    {
+      value: "new",
+      label: "New with tags",
+      description: "Brand new, never worn",
+    },
+    {
+      value: "like-new",
+      label: "Like new",
+      description: "Worn once or twice, excellent condition",
+    },
+    {
+      value: "excellent",
+      label: "Excellent",
+      description: "Gently used, no visible wear",
+    },
+    {
+      value: "good",
+      label: "Good",
+      description: "Some signs of wear, still in great shape",
+    },
+    {
+      value: "fair",
+      label: "Fair",
+      description: "Noticeable wear but still functional",
+    },
+  ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSelectChange = (name: string, value: string) => {
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
+    const files = e.target.files;
     if (files) {
-      const newImages = Array.from(files).map((file) => URL.createObjectURL(file))
-      setImages((prev) => [...prev, ...newImages].slice(0, 5)) // Max 5 images
+      const newImages = Array.from(files).map((file) =>
+        URL.createObjectURL(file)
+      );
+      setImages((prev) => [...prev, ...newImages].slice(0, 5)); // Max 5 images
     }
-  }
+  };
 
   const removeImage = (index: number) => {
-    setImages((prev) => prev.filter((_, i) => i !== index))
-  }
+    setImages((prev) => prev.filter((_, i) => i !== index));
+  };
 
   const addTag = () => {
     if (newTag.trim() && !tags.includes(newTag.trim()) && tags.length < 10) {
-      setTags((prev) => [...prev, newTag.trim()])
-      setNewTag("")
+      setTags((prev) => [...prev, newTag.trim()]);
+      setNewTag("");
     }
-  }
+  };
 
   const removeTag = (tagToRemove: string) => {
-    setTags((prev) => prev.filter((tag) => tag !== tagToRemove))
-  }
+    setTags((prev) => prev.filter((tag) => tag !== tagToRemove));
+  };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  const payload = { ...formData, tags, images }
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const payload = { ...formData, tags, images };
 
-  try {
-    const res = await fetch("http://localhost:5000/api/products/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    })
+    try {
+      const res = await fetch(`${process.env.BASE_URL}/api/products/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    const data = await res.json()
-    if (data.success) {
-      alert("Product listed successfully!")
-      // Optionally reset form
-    } else {
-      alert("Failed to list item")
+      const data = await res.json();
+      if (data.success) {
+        alert("Product listed successfully!");
+        // Optionally reset form
+      } else {
+        alert("Failed to list item");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting form");
     }
-  } catch (err) {
-    console.error(err)
-    alert("Error submitting form")
-  }
-}
-
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
@@ -121,7 +182,9 @@ const handleSubmit = async (e: React.FormEvent) => {
       <header className="bg-white/80 backdrop-blur-xl border-b border-green-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <Link href="/dashboard" className="flex items-center space-x-2 text-gray-600 hover:text-green-600">
+            <Link
+              href="/dashboard"
+              className="flex items-center space-x-2 text-gray-600 hover:text-green-600">
               <ArrowLeft className="h-5 w-5" />
               <span>Back to Dashboard</span>
             </Link>
@@ -140,8 +203,12 @@ const handleSubmit = async (e: React.FormEvent) => {
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Add New Item</h1>
-          <p className="text-gray-600">Share your sustainable fashion pieces with the community</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Add New Item
+          </h1>
+          <p className="text-gray-600">
+            Share your sustainable fashion pieces with the community
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
@@ -153,7 +220,8 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <span>Photos</span>
               </CardTitle>
               <CardDescription>
-                Add up to 5 high-quality photos. The first photo will be your main image.
+                Add up to 5 high-quality photos. The first photo will be your
+                main image.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -170,18 +238,27 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
-                    >
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600">
                       <X className="h-4 w-4" />
                     </button>
-                    {index === 0 && <Badge className="absolute bottom-2 left-2 bg-green-600 text-white">Main</Badge>}
+                    {index === 0 && (
+                      <Badge className="absolute bottom-2 left-2 bg-green-600 text-white">
+                        Main
+                      </Badge>
+                    )}
                   </div>
                 ))}
                 {images.length < 5 && (
                   <label className="aspect-square border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-green-400 hover:bg-green-50 transition-colors">
                     <Upload className="h-8 w-8 text-gray-400 mb-2" />
                     <span className="text-sm text-gray-600">Add Photo</span>
-                    <input type="file" multiple accept="image/*" onChange={handleImageUpload} className="hidden" />
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
                   </label>
                 )}
               </div>
@@ -237,13 +314,18 @@ const handleSubmit = async (e: React.FormEvent) => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="space-y-2">
                   <Label>Category *</Label>
-                  <Select onValueChange={(value) => handleSelectChange("category", value)}>
+                  <Select
+                    onValueChange={(value) =>
+                      handleSelectChange("category", value)
+                    }>
                     <SelectTrigger>
                       <SelectValue placeholder="Select category" />
                     </SelectTrigger>
                     <SelectContent>
                       {categories.map((category) => (
-                        <SelectItem key={category} value={category.toLowerCase()}>
+                        <SelectItem
+                          key={category}
+                          value={category.toLowerCase()}>
                           {category}
                         </SelectItem>
                       ))}
@@ -253,7 +335,10 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                 <div className="space-y-2">
                   <Label>Size *</Label>
-                  <Select onValueChange={(value) => handleSelectChange("size", value)}>
+                  <Select
+                    onValueChange={(value) =>
+                      handleSelectChange("size", value)
+                    }>
                     <SelectTrigger>
                       <SelectValue placeholder="Select size" />
                     </SelectTrigger>
@@ -269,16 +354,23 @@ const handleSubmit = async (e: React.FormEvent) => {
 
                 <div className="space-y-2">
                   <Label>Condition *</Label>
-                  <Select onValueChange={(value) => handleSelectChange("condition", value)}>
+                  <Select
+                    onValueChange={(value) =>
+                      handleSelectChange("condition", value)
+                    }>
                     <SelectTrigger>
                       <SelectValue placeholder="Select condition" />
                     </SelectTrigger>
                     <SelectContent>
                       {conditions.map((condition) => (
-                        <SelectItem key={condition.value} value={condition.value}>
+                        <SelectItem
+                          key={condition.value}
+                          value={condition.value}>
                           <div>
                             <div className="font-medium">{condition.label}</div>
-                            <div className="text-sm text-gray-500">{condition.description}</div>
+                            <div className="text-sm text-gray-500">
+                              {condition.description}
+                            </div>
                           </div>
                         </SelectItem>
                       ))}
@@ -319,7 +411,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <Tag className="h-5 w-5" />
                 <span>Tags</span>
               </CardTitle>
-              <CardDescription>Add tags to help others find your item (max 10 tags)</CardDescription>
+              <CardDescription>
+                Add tags to help others find your item (max 10 tags)
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
@@ -328,7 +422,9 @@ const handleSubmit = async (e: React.FormEvent) => {
                     placeholder="Add a tag..."
                     value={newTag}
                     onChange={(e) => setNewTag(e.target.value)}
-                    onKeyPress={(e) => e.key === "Enter" && (e.preventDefault(), addTag())}
+                    onKeyPress={(e) =>
+                      e.key === "Enter" && (e.preventDefault(), addTag())
+                    }
                   />
                   <Button type="button" onClick={addTag} variant="outline">
                     Add
@@ -339,10 +435,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <Badge
                       key={tag}
                       variant="secondary"
-                      className="flex items-center space-x-1 bg-green-100 text-green-800"
-                    >
+                      className="flex items-center space-x-1 bg-green-100 text-green-800">
                       <span>{tag}</span>
-                      <button type="button" onClick={() => removeTag(tag)} className="ml-1 hover:text-red-500">
+                      <button
+                        type="button"
+                        onClick={() => removeTag(tag)}
+                        className="ml-1 hover:text-red-500">
                         <X className="h-3 w-3" />
                       </button>
                     </Badge>
@@ -363,19 +461,25 @@ const handleSubmit = async (e: React.FormEvent) => {
             <CardContent className="space-y-6">
               <div className="space-y-2">
                 <Label>Swap Type</Label>
-                <Select onValueChange={(value) => handleSelectChange("swapPreference", value)}>
+                <Select
+                  onValueChange={(value) =>
+                    handleSelectChange("swapPreference", value)
+                  }>
                   <SelectTrigger>
                     <SelectValue placeholder="How would you like to swap?" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="points">Points Only</SelectItem>
                     <SelectItem value="direct">Direct Swap Only</SelectItem>
-                    <SelectItem value="both">Both Points & Direct Swap</SelectItem>
+                    <SelectItem value="both">
+                      Both Points & Direct Swap
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
 
-              {(formData.swapPreference === "points" || formData.swapPreference === "both") && (
+              {(formData.swapPreference === "points" ||
+                formData.swapPreference === "both") && (
                 <div className="space-y-2">
                   <Label htmlFor="minPoints">Minimum Points</Label>
                   <Input
@@ -389,9 +493,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                 </div>
               )}
 
-              {(formData.swapPreference === "direct" || formData.swapPreference === "both") && (
+              {(formData.swapPreference === "direct" ||
+                formData.swapPreference === "both") && (
                 <div className="space-y-2">
-                  <Label htmlFor="preferredItems">Preferred Items for Swap</Label>
+                  <Label htmlFor="preferredItems">
+                    Preferred Items for Swap
+                  </Label>
                   <Textarea
                     id="preferredItems"
                     name="preferredItems"
@@ -407,7 +514,12 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <Checkbox
                   id="isNegotiable"
                   checked={formData.isNegotiable}
-                  onCheckedChange={(checked) => setFormData((prev) => ({ ...prev, isNegotiable: checked as boolean }))}
+                  onCheckedChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      isNegotiable: checked as boolean,
+                    }))
+                  }
                 />
                 <Label htmlFor="isNegotiable">I'm open to negotiations</Label>
               </div>
@@ -422,8 +534,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <Button
               type="submit"
               size="lg"
-              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-            >
+              className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
               <Sparkles className="h-4 w-4 mr-2" />
               List Item
             </Button>
@@ -431,5 +542,5 @@ const handleSubmit = async (e: React.FormEvent) => {
         </form>
       </div>
     </div>
-  )
+  );
 }

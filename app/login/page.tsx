@@ -40,7 +40,7 @@ export default function LoginPage() {
 
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:5000/api/login", {
+      const response = await fetch(`${process.env.BASE_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
