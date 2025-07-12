@@ -180,6 +180,14 @@ export default function LandingPage() {
                 className="text-gray-600 hover:text-green-600 transition-colors">
                 About
               </Link>
+                     <Link href="/ai-recommendations">
+  <Button
+    variant="outline"
+    className="border-green-300 text-green-700 hover:bg-green-100"
+  >
+    AI Recommendations
+  </Button>
+</Link>
               <Link href="/dashboard">
                 <Button variant="ghost" className="text-green-600">
                   Dashboard
