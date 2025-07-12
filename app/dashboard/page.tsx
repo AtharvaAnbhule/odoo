@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Progress } from "@/components/ui/progress"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Progress } from "@/components/ui/progress";
 import {
   ArrowRight,
   Leaf,
@@ -25,14 +25,14 @@ import {
   MapPin,
   ShoppingCart,
   Eye,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
-import Separator from "@/components/ui/separator"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import Separator from "@/components/ui/separator";
 
 export default function DashboardPage() {
-  const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState("overview")
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState("overview");
 
   // Mock user data
   const mockUser = {
@@ -49,11 +49,26 @@ export default function DashboardPage() {
     waterSaved: "2,340L",
     treesPlanted: 12,
     achievements: [
-      { id: 1, name: "First Exchange", icon: "♻️", description: "Completed your first sustainable exchange" },
-      { id: 2, name: "Eco Explorer", icon: "🌍", description: "Explored 10+ eco-friendly categories" },
-      { id: 3, name: "Carbon Saver", icon: "💨", description: "Saved over 50kg of CO2 emissions" },
+      {
+        id: 1,
+        name: "First Exchange",
+        icon: "♻️",
+        description: "Completed your first sustainable exchange",
+      },
+      {
+        id: 2,
+        name: "Eco Explorer",
+        icon: "🌍",
+        description: "Explored 10+ eco-friendly categories",
+      },
+      {
+        id: 3,
+        name: "Carbon Saver",
+        icon: "💨",
+        description: "Saved over 50kg of CO2 emissions",
+      },
     ],
-  }
+  };
 
   // Mock recent activity
   const mockRecentActivity = [
@@ -89,7 +104,7 @@ export default function DashboardPage() {
       points: 0,
       itemImage: null,
     },
-  ]
+  ];
 
   // Mock listings
   const mockListings = [
@@ -126,7 +141,7 @@ export default function DashboardPage() {
       condition: "Excellent",
       ecoScore: 90,
     },
-  ]
+  ];
 
   // Mock exchanges
   const mockExchanges = [
@@ -148,14 +163,14 @@ export default function DashboardPage() {
       status: "shipped",
       image: "/placeholder.svg?height=100&width=100",
     },
-  ]
+  ];
 
   useEffect(() => {
     // Simulate loading data
     setTimeout(() => {
-      setLoading(false)
-    }, 1000)
-  }, [])
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   if (loading) {
     return (
@@ -165,7 +180,7 @@ export default function DashboardPage() {
           <p className="text-gray-600">Loading your eco-dashboard...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -198,8 +213,7 @@ export default function DashboardPage() {
               <Link href="/sell">
                 <Button
                   className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                  size="sm"
-                >
+                  size="sm">
                   List Item
                 </Button>
               </Link>
@@ -212,11 +226,17 @@ export default function DashboardPage() {
         {/* Welcome Section */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome, {mockUser.name}!</h1>
-            <p className="text-gray-600">Your sustainable fashion journey at a glance</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              Welcome, {mockUser.name}!
+            </h1>
+            <p className="text-gray-600">
+              Your sustainable fashion journey at a glance
+            </p>
           </div>
           <Link href="/settings">
-            <Button variant="outline" className="border-green-200 hover:bg-green-50 bg-transparent">
+            <Button
+              variant="outline"
+              className="border-green-200 hover:bg-green-50 bg-transparent">
               Edit Profile
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
@@ -231,8 +251,12 @@ export default function DashboardPage() {
                 <AvatarImage src={mockUser.avatar || "/placeholder.svg"} />
                 <AvatarFallback>{mockUser.name.charAt(0)}</AvatarFallback>
               </Avatar>
-              <h2 className="text-xl font-bold text-gray-900">{mockUser.name}</h2>
-              <Badge className="bg-green-100 text-green-800 mt-2">{mockUser.level}</Badge>
+              <h2 className="text-xl font-bold text-gray-900">
+                {mockUser.name}
+              </h2>
+              <Badge className="bg-green-100 text-green-800 mt-2">
+                {mockUser.level}
+              </Badge>
               <div className="flex items-center justify-center space-x-2 text-gray-600 text-sm mt-2">
                 <Star className="h-4 w-4 text-yellow-400 fill-current" />
                 <span>{mockUser.rating} Rating</span>
@@ -249,10 +273,15 @@ export default function DashboardPage() {
                   <span className="text-gray-600">Eco Score</span>
                   <span className="font-semibold">{mockUser.ecoScore}%</span>
                 </div>
-                <Progress value={mockUser.ecoScore} className="h-2 bg-green-200" />
+                <Progress
+                  value={mockUser.ecoScore}
+                  className="h-2 bg-green-200"
+                />
                 <div className="flex justify-between text-sm mt-4">
                   <span className="text-gray-600">Eco Points</span>
-                  <span className="font-bold text-green-600 text-xl">{mockUser.points}</span>
+                  <span className="font-bold text-green-600 text-xl">
+                    {mockUser.points}
+                  </span>
                 </div>
               </div>
             </CardContent>
@@ -268,17 +297,23 @@ export default function DashboardPage() {
             <CardContent className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="text-center p-4 bg-green-50 rounded-lg">
                 <Wind className="h-8 w-8 text-green-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-green-600">{mockUser.carbonSaved}</div>
+                <div className="text-2xl font-bold text-green-600">
+                  {mockUser.carbonSaved}
+                </div>
                 <div className="text-sm text-gray-600">CO2 Saved</div>
               </div>
               <div className="text-center p-4 bg-blue-50 rounded-lg">
                 <Droplets className="h-8 w-8 text-blue-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-blue-600">{mockUser.waterSaved}</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {mockUser.waterSaved}
+                </div>
                 <div className="text-sm text-gray-600">Water Saved</div>
               </div>
               <div className="text-center p-4 bg-emerald-50 rounded-lg">
                 <Recycle className="h-8 w-8 text-emerald-600 mx-auto mb-2" />
-                <div className="text-2xl font-bold text-emerald-600">{mockUser.totalExchanges}</div>
+                <div className="text-2xl font-bold text-emerald-600">
+                  {mockUser.totalExchanges}
+                </div>
                 <div className="text-sm text-gray-600">Items Recycled</div>
               </div>
             </CardContent>
@@ -286,21 +321,32 @@ export default function DashboardPage() {
         </div>
 
         {/* Tabs for Dashboard Content */}
-        <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="space-y-6">
           <TabsList className="grid w-full grid-cols-4 lg:w-auto lg:grid-cols-4">
-            <TabsTrigger value="overview" className="flex items-center space-x-2">
+            <TabsTrigger
+              value="overview"
+              className="flex items-center space-x-2">
               <Clock className="h-4 w-4" />
               <span>Overview</span>
             </TabsTrigger>
-            <TabsTrigger value="listings" className="flex items-center space-x-2">
+            <TabsTrigger
+              value="listings"
+              className="flex items-center space-x-2">
               <ShoppingBag className="h-4 w-4" />
               <span>My Listings</span>
             </TabsTrigger>
-            <TabsTrigger value="exchanges" className="flex items-center space-x-2">
+            <TabsTrigger
+              value="exchanges"
+              className="flex items-center space-x-2">
               <Package className="h-4 w-4" />
               <span>My Exchanges</span>
             </TabsTrigger>
-            <TabsTrigger value="achievements" className="flex items-center space-x-2">
+            <TabsTrigger
+              value="achievements"
+              className="flex items-center space-x-2">
               <Award className="h-4 w-4" />
               <span>Achievements</span>
             </TabsTrigger>
@@ -320,7 +366,9 @@ export default function DashboardPage() {
                 <CardContent>
                   <div className="space-y-4">
                     {mockRecentActivity.map((activity) => (
-                      <div key={activity.id} className="flex items-center space-x-3">
+                      <div
+                        key={activity.id}
+                        className="flex items-center space-x-3">
                         {activity.itemImage && (
                           <Image
                             src={activity.itemImage || "/placeholder.svg"}
@@ -331,13 +379,20 @@ export default function DashboardPage() {
                           />
                         )}
                         <div className="flex-1">
-                          <p className="font-medium text-gray-900">{activity.description}</p>
-                          <p className="text-sm text-gray-600">{activity.date}</p>
+                          <p className="font-medium text-gray-900">
+                            {activity.description}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            {activity.date}
+                          </p>
                         </div>
                         {activity.points !== 0 && (
                           <Badge
-                            className={activity.points > 0 ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}
-                          >
+                            className={
+                              activity.points > 0
+                                ? "bg-green-100 text-green-800"
+                                : "bg-red-100 text-red-800"
+                            }>
                             {activity.points > 0 ? "+" : ""}
                             {activity.points} Points
                           </Badge>
@@ -358,8 +413,7 @@ export default function DashboardPage() {
                     <Link href="/products">
                       <Button
                         variant="outline"
-                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent"
-                      >
+                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent">
                         <ShoppingBag className="h-6 w-6" />
                         <span className="text-sm">Shop Items</span>
                       </Button>
@@ -367,8 +421,7 @@ export default function DashboardPage() {
                     <Link href="/sell">
                       <Button
                         variant="outline"
-                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent"
-                      >
+                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent">
                         <Package className="h-6 w-6" />
                         <span className="text-sm">List New Item</span>
                       </Button>
@@ -376,8 +429,7 @@ export default function DashboardPage() {
                     <Link href="/messages">
                       <Button
                         variant="outline"
-                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent"
-                      >
+                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent">
                         <MessageCircle className="h-6 w-6" />
                         <span className="text-sm">My Messages</span>
                       </Button>
@@ -385,8 +437,7 @@ export default function DashboardPage() {
                     <Link href="/cart">
                       <Button
                         variant="outline"
-                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent"
-                      >
+                        className="w-full h-20 flex flex-col items-center justify-center space-y-2 bg-transparent">
                         <ShoppingCart className="h-6 w-6" />
                         <span className="text-sm">My Cart</span>
                       </Button>
@@ -399,10 +450,14 @@ export default function DashboardPage() {
 
           {/* My Listings Tab */}
           <TabsContent value="listings" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">My Sustainable Listings</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              My Sustainable Listings
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockListings.map((item) => (
-                <Card key={item.id} className="border-0 bg-white/80 backdrop-blur-sm">
+                <Card
+                  key={item.id}
+                  className="border-0 bg-white/80 backdrop-blur-sm">
                   <CardContent className="p-0">
                     <div className="aspect-square relative overflow-hidden rounded-t-lg">
                       <Image
@@ -412,17 +467,25 @@ export default function DashboardPage() {
                         height={300}
                         className="w-full h-full object-cover"
                       />
-                      <Badge className="absolute top-2 left-2 bg-green-500 text-white">{item.condition}</Badge>
+                      <Badge className="absolute top-2 left-2 bg-green-500 text-white">
+                        {item.condition}
+                      </Badge>
                       <Badge className="absolute top-2 right-2 bg-green-100 text-green-800 text-xs">
                         <Leaf className="h-3 w-3 mr-1" />
                         {item.ecoScore}% Eco
                       </Badge>
                     </div>
                     <div className="p-4">
-                      <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                      <p className="text-sm text-gray-600 mb-2">Status: {item.status}</p>
+                      <h3 className="font-semibold text-gray-900 mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Status: {item.status}
+                      </p>
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-lg font-bold text-green-600">{item.points} Points</span>
+                        <span className="text-lg font-bold text-green-600">
+                          {item.points} Points
+                        </span>
                         <div className="flex items-center space-x-2 text-sm text-gray-500">
                           <span className="flex items-center">
                             <Eye className="h-4 w-4 mr-1" />
@@ -437,8 +500,7 @@ export default function DashboardPage() {
                       <Link href={`/item/${item.id}`}>
                         <Button
                           size="sm"
-                          className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                        >
+                          className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
                           View Details
                         </Button>
                       </Link>
@@ -449,7 +511,9 @@ export default function DashboardPage() {
             </div>
             <div className="text-center mt-6">
               <Link href="/add-item">
-                <Button variant="outline" className="border-green-200 hover:bg-green-50 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="border-green-200 hover:bg-green-50 bg-transparent">
                   Add New Item
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -459,10 +523,14 @@ export default function DashboardPage() {
 
           {/* My Exchanges Tab */}
           <TabsContent value="exchanges" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">My Sustainable Exchanges</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              My Sustainable Exchanges
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {mockExchanges.map((exchange) => (
-                <Card key={exchange.id} className="border-0 bg-white/80 backdrop-blur-sm">
+                <Card
+                  key={exchange.id}
+                  className="border-0 bg-white/80 backdrop-blur-sm">
                   <CardContent className="p-4 flex items-center space-x-4">
                     <div className="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
                       <Image
@@ -474,12 +542,22 @@ export default function DashboardPage() {
                       />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-semibold text-gray-900 mb-1">{exchange.item}</h3>
-                      <p className="text-sm text-gray-600 mb-1">Exchanged with: {exchange.seller}</p>
-                      <p className="text-sm text-gray-600 mb-2">Date: {exchange.date}</p>
+                      <h3 className="font-semibold text-gray-900 mb-1">
+                        {exchange.item}
+                      </h3>
+                      <p className="text-sm text-gray-600 mb-1">
+                        Exchanged with: {exchange.seller}
+                      </p>
+                      <p className="text-sm text-gray-600 mb-2">
+                        Date: {exchange.date}
+                      </p>
                       <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-green-600">{exchange.points} Points</span>
-                        <Badge className="bg-green-100 text-green-800">{exchange.status}</Badge>
+                        <span className="text-lg font-bold text-green-600">
+                          {exchange.points} Points
+                        </span>
+                        <Badge className="bg-green-100 text-green-800">
+                          {exchange.status}
+                        </Badge>
                       </div>
                     </div>
                   </CardContent>
@@ -488,7 +566,9 @@ export default function DashboardPage() {
             </div>
             <div className="text-center mt-6">
               <Link href="/products">
-                <Button variant="outline" className="border-green-200 hover:bg-green-50 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="border-green-200 hover:bg-green-50 bg-transparent">
                   Find More Items
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -498,15 +578,21 @@ export default function DashboardPage() {
 
           {/* Achievements Tab */}
           <TabsContent value="achievements" className="space-y-6">
-            <h2 className="text-2xl font-bold text-gray-900">Your Eco Achievements</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Your Eco Achievements
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {mockUser.achievements.map((achievement) => (
-                <Card key={achievement.id} className="border-0 bg-white/80 backdrop-blur-sm text-center">
+                <Card
+                  key={achievement.id}
+                  className="border-0 bg-white/80 backdrop-blur-sm text-center">
                   <CardContent className="p-6">
                     <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl">
                       {achievement.icon}
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">{achievement.name}</h3>
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {achievement.name}
+                    </h3>
                     <p className="text-gray-600">{achievement.description}</p>
                   </CardContent>
                 </Card>
@@ -514,7 +600,9 @@ export default function DashboardPage() {
             </div>
             <div className="text-center mt-6">
               <Link href="/achievements">
-                <Button variant="outline" className="border-green-200 hover:bg-green-50 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="border-green-200 hover:bg-green-50 bg-transparent">
                   View All Achievements
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
@@ -524,5 +612,5 @@ export default function DashboardPage() {
         </Tabs>
       </div>
     </div>
-  )
+  );
 }
