@@ -1,12 +1,18 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Label } from "@/components/ui/label"
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import {
   Heart,
   Search,
@@ -21,20 +27,20 @@ import {
   Camera,
   Wind,
   Droplets,
-} from "lucide-react"
-import Link from "next/link"
-import Image from "next/image"
+} from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ProductsPage() {
-  const [products, setProducts] = useState([])
-  const [filteredProducts, setFilteredProducts] = useState([])
-  const [searchTerm, setSearchTerm] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("all")
-  const [selectedCondition, setSelectedCondition] = useState("all")
-  const [priceRange, setPriceRange] = useState("all")
-  const [sortBy, setSortBy] = useState("newest")
-  const [viewMode, setViewMode] = useState("grid")
-  const [loading, setLoading] = useState(true)
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedCondition, setSelectedCondition] = useState("all");
+  const [priceRange, setPriceRange] = useState("all");
+  const [sortBy, setSortBy] = useState("newest");
+  const [viewMode, setViewMode] = useState("grid");
+  const [loading, setLoading] = useState(true);
 
   // Mock data - replace with API call
   const mockProducts = [
@@ -52,7 +58,8 @@ export default function ProductsPage() {
       category: "Outerwear",
       seller: "Sarah Chen",
       rating: 4.8,
-      description: "Classic denim jacket made from organic cotton, in excellent condition.",
+      description:
+        "Classic denim jacket made from organic cotton, in excellent condition.",
       ecoScore: 95,
       carbonSaved: "2.5kg CO2",
       waterSaved: "450L",
@@ -71,7 +78,8 @@ export default function ProductsPage() {
       category: "Dresses",
       seller: "Emma Wilson",
       rating: 4.9,
-      description: "Beautiful vintage silk dress made with sustainable practices.",
+      description:
+        "Beautiful vintage silk dress made with sustainable practices.",
       ecoScore: 92,
       carbonSaved: "1.8kg CO2",
       waterSaved: "300L",
@@ -152,70 +160,83 @@ export default function ProductsPage() {
       carbonSaved: "1.2kg CO2",
       waterSaved: "180L",
     },
-  ]
+  ];
 
   useEffect(() => {
     // Simulate API call
     setTimeout(() => {
-      setProducts(mockProducts)
-      setFilteredProducts(mockProducts)
-      setLoading(false)
-    }, 1000)
-  }, [])
+      setProducts(mockProducts);
+      setFilteredProducts(mockProducts);
+      setLoading(false);
+    }, 1000);
+  }, []);
 
   useEffect(() => {
-    let filtered = products
+    let filtered = products;
 
     // Search filter
     if (searchTerm) {
       filtered = filtered.filter(
         (product) =>
           product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          product.brand.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
+          product.brand.toLowerCase().includes(searchTerm.toLowerCase())
+      );
     }
 
     // Category filter
     if (selectedCategory !== "all") {
-      filtered = filtered.filter((product) => product.category.toLowerCase() === selectedCategory)
+      filtered = filtered.filter(
+        (product) => product.category.toLowerCase() === selectedCategory
+      );
     }
 
     // Condition filter
     if (selectedCondition !== "all") {
-      filtered = filtered.filter((product) => product.condition.toLowerCase().replace(" ", "-") === selectedCondition)
+      filtered = filtered.filter(
+        (product) =>
+          product.condition.toLowerCase().replace(" ", "-") ===
+          selectedCondition
+      );
     }
 
     // Price filter (using points)
     if (priceRange !== "all") {
-      const [min, max] = priceRange.split("-").map(Number)
+      const [min, max] = priceRange.split("-").map(Number);
       filtered = filtered.filter((product) => {
         if (max) {
-          return product.points >= min && product.points <= max
+          return product.points >= min && product.points <= max;
         } else {
-          return product.points >= min
+          return product.points >= min;
         }
-      })
+      });
     }
 
     // Sort
     switch (sortBy) {
       case "price-low":
-        filtered.sort((a, b) => a.points - b.points)
-        break
+        filtered.sort((a, b) => a.points - b.points);
+        break;
       case "price-high":
-        filtered.sort((a, b) => b.points - a.points)
-        break
+        filtered.sort((a, b) => b.points - a.points);
+        break;
       case "popular":
-        filtered.sort((a, b) => b.likes - a.likes)
-        break
+        filtered.sort((a, b) => b.likes - a.likes);
+        break;
       case "newest":
       default:
-        filtered.sort((a, b) => b.id - a.id)
-        break
+        filtered.sort((a, b) => b.id - a.id);
+        break;
     }
 
-    setFilteredProducts(filtered)
-  }, [products, searchTerm, selectedCategory, selectedCondition, priceRange, sortBy])
+    setFilteredProducts(filtered);
+  }, [
+    products,
+    searchTerm,
+    selectedCategory,
+    selectedCondition,
+    priceRange,
+    sortBy,
+  ]);
 
   const categories = [
     { value: "all", label: "All Categories" },
@@ -226,7 +247,7 @@ export default function ProductsPage() {
     { value: "shoes", label: "Shoes" },
     { value: "accessories", label: "Accessories" },
     { value: "formal", label: "Formal" },
-  ]
+  ];
 
   const conditions = [
     { value: "all", label: "All Conditions" },
@@ -234,7 +255,7 @@ export default function ProductsPage() {
     { value: "excellent", label: "Excellent" },
     { value: "good", label: "Good" },
     { value: "fair", label: "Fair" },
-  ]
+  ];
 
   const priceRanges = [
     { value: "all", label: "All Points" },
@@ -242,14 +263,14 @@ export default function ProductsPage() {
     { value: "100-250", label: "100 - 250 Points" },
     { value: "250-500", label: "250 - 500 Points" },
     { value: "500", label: "Above 500 Points" },
-  ]
+  ];
 
   const handleARTryOn = () => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices
         .getUserMedia({ video: true })
         .then((stream) => {
-          const arWindow = window.open("", "_blank", "width=800,height=600")
+          const arWindow = window.open("", "_blank", "width=800,height=600");
           arWindow.document.write(`
             <html>
               <head>
@@ -284,15 +305,15 @@ export default function ProductsPage() {
                 </script>
               </body>
             </html>
-          `)
+          `);
         })
         .catch((err) => {
-          alert("Camera access required for AR try-on feature.")
-        })
+          alert("Camera access required for AR try-on feature.");
+        });
     } else {
-      alert("AR try-on not supported on this device.")
+      alert("AR try-on not supported on this device.");
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -302,7 +323,7 @@ export default function ProductsPage() {
           <p className="text-gray-600">Loading amazing fashion finds...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -340,8 +361,13 @@ export default function ProductsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Discover Sustainable Fashion</h1>
-          <p className="text-gray-600">Find your next favorite eco-friendly piece from our curated collection</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            Discover Sustainable Fashion
+          </h1>
+          <p className="text-gray-600">
+            Find your next favorite eco-friendly piece from our curated
+            collection
+          </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
@@ -371,7 +397,9 @@ export default function ProductsPage() {
                 {/* Category */}
                 <div className="space-y-2 mb-6">
                   <Label>Category</Label>
-                  <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <Select
+                    value={selectedCategory}
+                    onValueChange={setSelectedCategory}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -388,13 +416,17 @@ export default function ProductsPage() {
                 {/* Condition */}
                 <div className="space-y-2 mb-6">
                   <Label>Condition</Label>
-                  <Select value={selectedCondition} onValueChange={setSelectedCondition}>
+                  <Select
+                    value={selectedCondition}
+                    onValueChange={setSelectedCondition}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       {conditions.map((condition) => (
-                        <SelectItem key={condition.value} value={condition.value}>
+                        <SelectItem
+                          key={condition.value}
+                          value={condition.value}>
                           {condition.label}
                         </SelectItem>
                       ))}
@@ -427,7 +459,9 @@ export default function ProductsPage() {
             {/* Toolbar */}
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
               <div className="flex items-center space-x-4">
-                <span className="text-gray-600">{filteredProducts.length} sustainable products found</span>
+                <span className="text-gray-600">
+                  {filteredProducts.length} sustainable products found
+                </span>
               </div>
               <div className="flex items-center space-x-4">
                 <Select value={sortBy} onValueChange={setSortBy}>
@@ -437,8 +471,12 @@ export default function ProductsPage() {
                   <SelectContent>
                     <SelectItem value="newest">Newest First</SelectItem>
                     <SelectItem value="popular">Most Popular</SelectItem>
-                    <SelectItem value="price-low">Points: Low to High</SelectItem>
-                    <SelectItem value="price-high">Points: High to Low</SelectItem>
+                    <SelectItem value="price-low">
+                      Points: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-high">
+                      Points: High to Low
+                    </SelectItem>
                   </SelectContent>
                 </Select>
                 <div className="flex border rounded-lg">
@@ -446,16 +484,22 @@ export default function ProductsPage() {
                     variant={viewMode === "grid" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setViewMode("grid")}
-                    className={viewMode === "grid" ? "bg-green-600 hover:bg-green-700" : ""}
-                  >
+                    className={
+                      viewMode === "grid"
+                        ? "bg-green-600 hover:bg-green-700"
+                        : ""
+                    }>
                     <Grid className="h-4 w-4" />
                   </Button>
                   <Button
                     variant={viewMode === "list" ? "default" : "ghost"}
                     size="sm"
                     onClick={() => setViewMode("list")}
-                    className={viewMode === "list" ? "bg-green-600 hover:bg-green-700" : ""}
-                  >
+                    className={
+                      viewMode === "list"
+                        ? "bg-green-600 hover:bg-green-700"
+                        : ""
+                    }>
                     <List className="h-4 w-4" />
                   </Button>
                 </div>
@@ -468,28 +512,36 @@ export default function ProductsPage() {
                 <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Search className="h-12 w-12 text-gray-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">No sustainable products found</h3>
-                <p className="text-gray-600">Try adjusting your filters or search terms</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                  No sustainable products found
+                </h3>
+                <p className="text-gray-600">
+                  Try adjusting your filters or search terms
+                </p>
               </div>
             ) : (
               <div
                 className={`grid gap-6 ${
-                  viewMode === "grid" ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" : "grid-cols-1"
-                }`}
-              >
+                  viewMode === "grid"
+                    ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                    : "grid-cols-1"
+                }`}>
                 {filteredProducts.map((product) => (
                   <Card
                     key={product.id}
                     className={`group hover:shadow-xl transition-all duration-300 border-0 bg-white/80 backdrop-blur-sm ${
                       viewMode === "list" ? "flex" : ""
-                    }`}
-                  >
-                    <CardContent className={`p-0 ${viewMode === "list" ? "flex w-full" : ""}`}>
+                    }`}>
+                    <CardContent
+                      className={`p-0 ${
+                        viewMode === "list" ? "flex w-full" : ""
+                      }`}>
                       <div
                         className={`relative overflow-hidden ${
                           viewMode === "list" ? "w-48 h-48" : "aspect-square"
-                        } ${viewMode === "grid" ? "rounded-t-lg" : "rounded-l-lg"}`}
-                      >
+                        } ${
+                          viewMode === "grid" ? "rounded-t-lg" : "rounded-l-lg"
+                        }`}>
                         <Image
                           src={product.image || "/placeholder.svg"}
                           alt={product.title}
@@ -497,26 +549,28 @@ export default function ProductsPage() {
                           height={300}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
-                        <Badge className="absolute top-2 left-2 bg-green-500 text-white">{product.condition}</Badge>
+                        <Badge className="absolute top-2 left-2 bg-green-500 text-white">
+                          {product.condition}
+                        </Badge>
                         <div className="absolute top-2 right-2 flex flex-col space-y-1">
                           <Button
                             variant="ghost"
                             size="sm"
                             className="bg-white/80 backdrop-blur-sm hover:bg-white p-2 h-auto"
-                            onClick={handleARTryOn}
-                          >
+                            onClick={handleARTryOn}>
                             <Camera className="h-4 w-4" />
                           </Button>
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="bg-white/80 backdrop-blur-sm hover:bg-white p-2 h-auto"
-                          >
+                            className="bg-white/80 backdrop-blur-sm hover:bg-white p-2 h-auto">
                             <Heart className="h-4 w-4" />
                           </Button>
                         </div>
                         <div className="absolute bottom-2 left-2 flex space-x-1">
-                          <Badge variant="secondary" className="text-xs bg-green-100 text-green-800">
+                          <Badge
+                            variant="secondary"
+                            className="text-xs bg-green-100 text-green-800">
                             <Leaf className="h-3 w-3 mr-1" />
                             {product.ecoScore}% Eco
                           </Badge>
@@ -526,10 +580,15 @@ export default function ProductsPage() {
                           </Badge>
                         </div>
                       </div>
-                      <div className={`p-4 ${viewMode === "list" ? "flex-1" : ""}`}>
+                      <div
+                        className={`p-4 ${
+                          viewMode === "list" ? "flex-1" : ""
+                        }`}>
                         <div className="flex items-start justify-between mb-2">
                           <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900 mb-1">{product.title}</h3>
+                            <h3 className="font-semibold text-gray-900 mb-1">
+                              {product.title}
+                            </h3>
                             <p className="text-sm text-gray-600 mb-2">
                               {product.brand} • Size {product.size}
                             </p>
@@ -542,7 +601,9 @@ export default function ProductsPage() {
 
                         {viewMode === "list" && (
                           <>
-                            <p className="text-sm text-gray-600 mb-3">{product.description}</p>
+                            <p className="text-sm text-gray-600 mb-3">
+                              {product.description}
+                            </p>
                             <div className="flex items-center space-x-2 text-sm text-gray-600 mb-3">
                               <Wind className="h-4 w-4 text-green-600" />
                               <span>Saves {product.carbonSaved}</span>
@@ -554,21 +615,30 @@ export default function ProductsPage() {
 
                         <div className="flex items-center justify-between mb-3">
                           <div className="flex items-center space-x-2">
-                            <span className="text-lg font-bold text-green-600">{product.points} Points</span>
-                            <span className="text-sm text-gray-500 line-through">{product.originalPoints} Points</span>
+                            <span className="text-lg font-bold text-green-600">
+                              {product.points} Points
+                            </span>
+                            <span className="text-sm text-gray-500 line-through">
+                              {product.originalPoints} Points
+                            </span>
                           </div>
                           <Badge variant="outline" className="text-xs">
-                            {Math.round(((product.originalPoints - product.points) / product.originalPoints) * 100)}%
-                            OFF
+                            {Math.round(
+                              ((product.originalPoints - product.points) /
+                                product.originalPoints) *
+                                100
+                            )}
+                            % OFF
                           </Badge>
                         </div>
 
                         <div className="flex space-x-2">
-                          <Link href={`/products/${product.id}`} className="flex-1">
+                          <Link
+                            href={`/products/${product.id}`}
+                            className="flex-1">
                             <Button
                               size="sm"
-                              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700"
-                            >
+                              className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700">
                               View Details
                             </Button>
                           </Link>
@@ -586,5 +656,5 @@ export default function ProductsPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
