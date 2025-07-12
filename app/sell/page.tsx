@@ -90,11 +90,30 @@ export default function SellPage() {
     setTags((prev) => prev.filter((tag) => tag !== tagToRemove))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    console.log("Form data:", { ...formData, images, tags })
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  const payload = { ...formData, tags, images }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/products/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+
+    const data = await res.json()
+    if (data.success) {
+      alert("Product listed successfully!")
+      // Optionally reset form
+    } else {
+      alert("Failed to list item")
+    }
+  } catch (err) {
+    console.error(err)
+    alert("Error submitting form")
   }
+}
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-50">
