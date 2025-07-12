@@ -57,10 +57,10 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     points: 250,
     originalPoints: 400,
     images: [
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
-      "/placeholder.svg?height=600&width=600",
+      "https://tse1.explicit.bing.net/th/id/OIP.BEWFT-bc-QsFcJhjeIu12gHaJQ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      "/https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
+      "https://tse1.explicit.bing.net/th/id/OIP.BEWFT-bc-QsFcJhjeIu12gHaJQ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      "/https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
     ],
     tags: ["sustainable", "organic", "eco-friendly", "denim", "jacket", "blue", "classic"],
     ecoScore: 95,
@@ -123,7 +123,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     {
       id: 2,
       title: "Organic Cotton T-Shirt",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
       points: 120,
       originalPoints: 200,
       condition: "Excellent",
@@ -133,7 +133,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     {
       id: 3,
       title: "Recycled Denim Skirt",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
       points: 180,
       originalPoints: 300,
       condition: "Like New",
@@ -143,7 +143,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     {
       id: 4,
       title: "Hemp Fiber Cardigan",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
       points: 220,
       originalPoints: 350,
       condition: "Good",
