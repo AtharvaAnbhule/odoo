@@ -115,7 +115,7 @@ export default function DashboardPage() {
       points: 250,
       views: 156,
       likes: 24,
-      image: "/placeholder.svg?height=100&width=100",
+      image: "https://zerowastedaniel.com/cdn/shop/files/BP_06726_72DPI_2048x.jpg?v=1697740794",
       condition: "Like New",
       ecoScore: 95,
     },

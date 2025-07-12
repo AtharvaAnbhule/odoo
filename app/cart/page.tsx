@@ -27,7 +27,7 @@ export default function CartPage() {
       points: 250,
       originalPoints: 400,
       quantity: 1,
-      image: "https://tse1.explicit.bing.net/th/id/OIP.BEWFT-bc-QsFcJhjeIu12gHaJQ?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+      image: "https://zerowastedaniel.com/cdn/shop/files/BP_06726_72DPI_2048x.jpg?v=1697740794",
       seller: "Sarah Chen",
       inStock: true,
       ecoScore: 95,

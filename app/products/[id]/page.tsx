@@ -102,6 +102,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         user: "Priya Sharma",
         rating: 5,
         comment: "Amazing sustainable quality! Exactly as described. Love supporting eco-friendly fashion.",
+        image: "https://tse2.mm.bing.net/th/id/OIP.us5B3IldhiVmOZmEjI8DSgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+
         date: "2024-01-10",
         verified: true,
         ecoRating: 5,
@@ -111,6 +113,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
         user: "Rahul Kumar",
         rating: 4,
         comment: "Good condition and great eco-credentials. Happy to contribute to sustainable fashion.",
+        image: "https://tse2.mm.bing.net/th/id/OIP.us5B3IldhiVmOZmEjI8DSgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+
         date: "2024-01-08",
         verified: true,
         ecoRating: 4,
@@ -123,7 +127,7 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     {
       id: 2,
       title: "Organic Cotton T-Shirt",
-      image: "https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
+      image: "https://tse2.mm.bing.net/th/id/OIP.us5B3IldhiVmOZmEjI8DSgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       points: 120,
       originalPoints: 200,
       condition: "Excellent",
@@ -133,7 +137,8 @@ export default function ProductDetailPage({ params }: { params: { id: string } }
     {
       id: 3,
       title: "Recycled Denim Skirt",
-      image: "https://i.pinimg.com/originals/7c/08/68/7c0868c70f71cdbc7cf59de3ee86d3c9.jpg",
+      image: "https://i.etsystatic.com/17006794/r/il/dfb6f4/5539431563/il_1080xN.5539431563_ivs8.jpg",
+
       points: 180,
       originalPoints: 300,
       condition: "Like New",

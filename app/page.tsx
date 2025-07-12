@@ -43,7 +43,7 @@ export default function LandingPage() {
       brand: "Sustainable Co.",
       points: 250,
       originalPoints: 400,
-      image: "https://i.etsystatic.com/17006794/r/il/dfb6f4/5539431563/il_1080xN.5539431563_ivs8.jpg",
+      image: "https://zerowastedaniel.com/cdn/shop/files/BP_06726_72DPI_2048x.jpg?v=1697740794",
       condition: "Like New",
       size: "M",
       likes: 24,

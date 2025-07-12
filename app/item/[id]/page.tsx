@@ -123,7 +123,7 @@ export default function ItemDetailPage({ params }: { params: { id: string } }) {
     {
       id: 2,
       title: "Organic Cotton T-Shirt",
-      image: "/placeholder.svg?height=200&width=200",
+      image: "https://tse2.mm.bing.net/th/id/OIP.us5B3IldhiVmOZmEjI8DSgHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
       points: 120,
       originalPoints: 200,
       condition: "Excellent",
